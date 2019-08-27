@@ -1,0 +1,21 @@
+{
+  "name": "Airbnb_for_study",
+  "version": "1.0.0",
+  "description": "Creating website of airbnb for study",
+  "main": "index.js",
+  "repository": "https://github.com/GustavoSMelo?tab=repositories",
+  "author": "Gustavo Santos Melo",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.16.2",
+    "mongoose": "^5.6.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "scripts":{}
+}
