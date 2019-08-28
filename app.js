@@ -29,7 +29,7 @@
     
 //other
 
-    express.static(path.join('public'));
+    app.use(express.static(path.join(__dirname,'public')));
 
     const PORT = 9997;
     app.listen(PORT, () =>{
