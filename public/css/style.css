@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+.color-red{
+    color: #d65e5e;
+}
+
+.link-onmouse :hover{
+    border-bottom: #252525;
+    transition: 1s;
+};
+
+.alink{
+    color: #101010;
+}
+
+.alink h2 :hover{
+    text-decoration: none;
+}
