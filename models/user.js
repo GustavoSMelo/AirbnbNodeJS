@@ -28,7 +28,14 @@ const usuario = mongoose.Schema({
     birth_year: {
         type: Date,
         require: true
-    }
+    },
+
+    isAdmin: {
+        type: Boolean,
+        require: true,
+        default: false
+    },
+    
 });
 
 mongoose.model('user', usuario);
