@@ -23,10 +23,14 @@
 //routes
 
     app.get('/', (req, res) =>{
-        res.render(`${__dirname}/views/index`, {title: 'test'});
+        res.render(`${__dirname}/views/index`, {title: 'Home page Airbnb'});
     });
 
     
+    app.get('/404', (req, res) =>{
+        res.send('Error 404 not find');
+    })
+
 //other
 
     app.use(express.static(path.join(__dirname,'public')));
