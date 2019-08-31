@@ -5,6 +5,8 @@ const Router = express.Router();
 const user = require('./../models/user');
 const bcrypt = require('bcrypt');
 const localStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+require('./../config/authentication')(passport);
 
 Router.get('/', (req, res) =>{
     res.render(`${__dirname}/../views/user/major`, {title: 'user routes'});
@@ -47,50 +49,12 @@ Router.get('/login', (req, res) =>{
     res.render(`${__dirname}/../views/user/loginUser`);
 });
 
-Router.post('/login/success', (req, res) =>{
-    const getValues = (passport) =>{
-        passport.use(new localStrategy({usernameField: 'email', passwordField: 'password'}, (email, password, done)=>{
-            user.findOne({email_user: req.body.email}).then((user) =>{
-                if(!user){
-                    console.log('Error when I will find this email');
-                    res.redirect('/404');
-                }
-                else{
-                    bcrypt.compare(password, req.body.password, (err, equals) =>{
-                        if(equals){
-                            return done(null, user);
-                        }
-
-                        else{
-                            console.log('Senha invalida! ');
-                            console.log(`${password} e foi : ${user.password_user}`)
-                            return done(null, false, {message: "Senha inválida, tente novamente "});
-                        }
-
-                        res.redirect('/');
-                    });
-                }
-                
-            });
-
-        }));
-
-        passport.serializeUser((user, done) =>{
-            done(null, user._id);
-        });
-    
-        passport.deserializeUser((id, done) =>{
-            user.findById(id, (err, user) =>{
-                done(err, user);
-            });
-        });
-
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/user/login',
-            failureFlash: true
-        })(req,  res, next);
-    }
+Router.post('/login', (req, res, next) =>{
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/user/login',
+        failureFlash: true
+    })(req, res, next);
 });
 
 module.exports = Router;
