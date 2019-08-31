@@ -13,8 +13,13 @@
         <ul class="nav navbar-nav collapse navbar-collapse" id="menuresponsive">
             <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Become a host</a></li>
             <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Help</a></li>
-            <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/register">Register</a></li>
-            <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Login </a></li>
+            {{#if user}}
+                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Teste </a></li>
+                
+                {{else}}
+                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/register">Register</a></li>
+                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Login </a></li>
+            {{/if}}
         </ul>
     </nav>
 </nav>
