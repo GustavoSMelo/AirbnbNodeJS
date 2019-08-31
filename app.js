@@ -7,7 +7,23 @@
     const path = require('path');
     const body_parser = require('body-parser'); 
     const user = require('./routes/userRoutes');
+    const session = require('express-session');
+    const passport = require('passport');
+    require('./config/authentication')(passport);
+    const flash = require('connect-flash')
 //configurations
+
+    //sessions
+        app.use(session({
+            secret: 'da1bizunesasenha',
+            resave: true,
+            saveUninitialized: true
+        }));
+
+        app.use(flash());
+
+        app.use(passport.initialize());
+        app.use(passport.session());
 
     //handlebars
         app.engine('handlebars', handlebars({defaultLayout: 'main'}));
@@ -34,6 +50,11 @@
 //other
 
     app.use(express.static(path.join(__dirname,'public')));
+
+    app.use((req, res, next) =>{
+        res.locals.user = req.user || null;
+        next(); 
+    })
 
     const PORT = 9997;
     app.listen(PORT, () =>{
