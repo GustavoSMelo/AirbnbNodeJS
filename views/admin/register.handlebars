@@ -1,0 +1,36 @@
+
+    <form class="form-group" method="POST" action="/admin/host/created">
+        <label>Your name: </label>
+            <input type="text" class="form-control" name="name" placeholder="Insert a your name or name of your corporation" required="required"/>
+        
+        <br/>
+        <label>Your email: </label>
+            <input type="email" class="form-control" name="email" placeholder="Insert the your email or email of your corporation" required="required"/>
+
+        <br/>
+        <label>Your password: </label>
+            <input type="password" class="form-control" name="password" placeholder="Insert your password" required="required"/>
+
+        <br/>
+        <label>Your CPF/ CNPJ: </label>
+            <input type="text" class="form-control" name="cpf" placeholder="Insert your CPF or your CPNJ(if you is a corporation) " required="required"/>
+
+        <br/>
+        <label>You is... </label>
+            <select name="type_admin" required="required" class="form-control">
+                <option></option>
+                <option value="PF">Physical person</option>
+                <option value="Corp">Corporation</option>
+            </select> 
+        
+        <br/>
+        <label>Why you want be a host? </label>
+        <textarea required="required" name="bio" class="form-control" required="required" placeholder="Insert the why you want be a admin">
+
+        </textarea>
+
+        <br/>
+        <button class="btn btn-success"> <i class="fas fa-check"></i> Create admin</button>
+        <br/>
+        <small><a href="#">Do you have a accont ? Sign In here! </a></small>
+    </form>
