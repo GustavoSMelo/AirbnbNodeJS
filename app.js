@@ -10,7 +10,8 @@
     const session = require('express-session');
     const passport = require('passport');
     require('./config/authentication')(passport);
-    const flash = require('connect-flash')
+    const flash = require('connect-flash');
+    const admin = require('./routes/adminRoutes');
 //configurations
 
     //sessions
@@ -25,6 +26,11 @@
         app.use(passport.initialize());
         app.use(passport.session());
 
+        app.use((req, res, next) =>{
+            res.locals.user = req.user || null;
+            next(); 
+        });
+
     //handlebars
         app.engine('handlebars', handlebars({defaultLayout: 'main'}));
         app.set('view engine', 'handlebars');
@@ -35,6 +41,7 @@
 
     //routes
         app.use('/user', user);
+        app.use('/admin', admin);
 
 //routes
 
@@ -50,11 +57,6 @@
 //other
 
     app.use(express.static(path.join(__dirname,'public')));
-
-    app.use((req, res, next) =>{
-        res.locals.user = req.user || null;
-        next(); 
-    })
 
     const PORT = 9997;
     app.listen(PORT, () =>{
