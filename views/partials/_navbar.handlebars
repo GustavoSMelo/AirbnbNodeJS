@@ -1,5 +1,5 @@
 <nav class="nav navbar-collapse navbar-expand-md navbar-light fixed-top bg-light">
-    <a class="nav navbar-brand m-2 ml-4 mr-5" href="#"><h3><i class="fab fa-airbnb color-red"></i></h3></a>
+    <a class="nav navbar-brand m-2 ml-4 mr-5" href="/"><h3><i class="fab fa-airbnb color-red"></i></h3></a>
     <span class="input-group-prepend">
         <span class="input-group-text bg-light mt-2">
             <h7><i class="fas fa-search"></i></h1>
@@ -11,14 +11,15 @@
     </a>
     <nav class="ml-auto m-2">
         <ul class="nav navbar-nav collapse navbar-collapse" id="menuresponsive">
-            <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Become a host</a></li>
             <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Help</a></li>
             {{#if user}}
-                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Teste </a></li>
-                
+                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Travels</a></li>
+                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Loved</a></li>
+                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">{{user.name_user}} <i class="fas fa-user"></i></a></li>
                 {{else}}
+                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/admin/host">Become a host</a></li>
                     <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/register">Register</a></li>
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Login </a></li>
+                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/login">Login </a></li>
             {{/if}}
         </ul>
     </nav>
