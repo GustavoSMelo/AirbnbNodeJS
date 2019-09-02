@@ -28,6 +28,7 @@
 
         app.use((req, res, next) =>{
             res.locals.user = req.user || null;
+            res.locals.admin = req.admin || null;
             next(); 
         });
 
