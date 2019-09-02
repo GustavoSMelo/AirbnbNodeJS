@@ -3,7 +3,7 @@
 const express = require('express');
 const Router = express.Router();
 const user = require('./../models/user');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const localStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 require('./../config/authentication')(passport);
@@ -55,11 +55,6 @@ Router.post('/login', (req, res, next) =>{
         failureRedirect: '/user/login',
         failureFlash: true
     })(req, res, next);
-});
-
-Router.get('/logout', (req, res) =>{
-    req.logout();
-    res.redirect('/');
 });
 
 module.exports = Router;
