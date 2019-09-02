@@ -3,7 +3,9 @@
 const express = require('express');
 const Router = express.Router();
 const admin = require('./../models/admin');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+require('./../config/authenticateHost')(passport);
 
 Router.get('/host', (req, res) =>{
     res.render(`${__dirname}/../views/admin/register`, {title: 'Form of register a host'});
@@ -33,7 +35,7 @@ Router.post('/host/created', (req, res) =>{
                     }).catch((err) =>{
                         console.error(`Erro to save admin: ${err}`);
                     });
-                })
+                });
             });
         }
     });
@@ -43,6 +45,19 @@ Router.post('/host/created', (req, res) =>{
 
 Router.get('/login', (req, res) =>{
     res.render(`${__dirname}/../views/admin/login`);
+});
+
+Router.post('/login', (req, res, next) =>{
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/admin/login',
+        failureFlash: true
+    })(req, res, next);
+});
+
+Router.get('/logout', (req, res) =>{
+    req.logout();
+    res.redirect('/');
 });
 
 module.exports = Router;
