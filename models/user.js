@@ -27,14 +27,30 @@ const usuario = mongoose.Schema({
 
     birth_year: {
         type: Date,
-        require: true
+        require: true,
+        default: '2000/01/01'
     },
 
     isAdmin: {
         type: Boolean,
         require: true,
-        default: false
+        default: true
     },
+
+    CPF_CNPJ_user:{
+        type: String,
+        require: false
+    },
+
+    type_user: {
+        type: String,
+        require: false
+    },
+
+    bio_user:{
+        type: String,
+        require: false
+    }
     
 });
 
