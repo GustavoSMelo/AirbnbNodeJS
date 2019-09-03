@@ -12,20 +12,20 @@
     <nav class="ml-auto m-2">
         <ul class="nav navbar-nav collapse navbar-collapse" id="menuresponsive">
             <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Help</a></li>
-            {{#if admin}}
-                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Add localization</a></li>
-                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/admin/logout">Logout </a></li>
-            {{/if}}
-
-            {{#if user}}
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Travels</a></li>
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Loved</a></li>
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">{{user.name_user}} <i class="fas fa-user"></i></a></li>
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/logout">Logout </a></li>
+            {{#if user.isAdmin}}
+                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/login">Teste </a></li>
+                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/logout">Logout </a></li>
                 {{else}}
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/admin/host">Become a host</a></li>
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/register">Register</a></li>
-                    <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/login">Login </a></li>
+                    {{#if user}}
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Travels</a></li>
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Loved</a></li>
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">{{user.name_user}} <i class="fas fa-user"></i></a></li>
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/logout">Logout </a></li>
+                    {{else}}
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/host/register">Become a host</a></li>
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/register">Register</a></li>
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/login">Login </a></li>
+                    {{/if}}
             {{/if}}
         </ul>
     </nav>
