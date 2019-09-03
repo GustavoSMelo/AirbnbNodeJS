@@ -10,7 +10,7 @@ module.exports = function(passport){
             {usernameField: 'email', passwordField: 'password'}, (email, password, done) =>{
             user.findOne({email_user: email}).then((user) =>{
                 if(!user){
-                    console.log('Email not find in our system')
+                    console.log('Email not find in our system');
                     return done(null, false, console.log('Email not find in our system'));
                 }
                 else{
