@@ -9,9 +9,9 @@
     const user = require('./routes/userRoutes');
     const session = require('express-session');
     const passport = require('passport');
-    require('./config/authentication')(passport);
+    require('./config/authentication');
     const flash = require('connect-flash');
-    const admin = require('./routes/adminRoutes');
+    //const admin = require('./routes/adminRoutes');
 //configurations
 
     //sessions
@@ -42,7 +42,7 @@
 
     //routes
         app.use('/user', user);
-        app.use('/admin', admin);
+        //app.use('/admin', admin);
 
 //routes
 
