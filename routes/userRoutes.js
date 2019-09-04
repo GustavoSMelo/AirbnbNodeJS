@@ -123,4 +123,12 @@ Router.get('/add/localization', isAdmin, (req, res) =>{
     res.send('Testing... ');
 });
 
+Router.get('/host/hotel', isAdmin,(req, res) =>{
+    res.render(`${__dirname}/../views/admin/hosthotel`, {title: 'Add a new hotel in your name'});
+});
+
+Router.get('/host/restaurant', isAdmin,(req, res) =>{
+    res.render(`${__dirname}/../views/admin/hostrestaurant`, {title: 'Add a new restaurant in your name '});
+});
+
 module.exports = Router;
