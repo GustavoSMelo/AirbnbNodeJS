@@ -8,6 +8,20 @@ const localStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 require('./../config/authentication')(passport);
 const {isAdmin} = require('./../Helpers/isAdmin');
+const hotel = require('./../models/hotel');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        cb(null, (`${__dirname}/../tmp/uploads/`))
+    },
+
+    filename: (req, file, cb) =>{
+        cb(null, file.originalname);
+    }
+
+})
+const upload = multer({storage});
 
 Router.get('/', (req, res) =>{
     res.render(`${__dirname}/../views/user/major`, {title: 'user routes'});
@@ -129,6 +143,32 @@ Router.get('/host/hotel', isAdmin,(req, res) =>{
 
 Router.get('/host/restaurant', isAdmin,(req, res) =>{
     res.render(`${__dirname}/../views/admin/hostrestaurant`, {title: 'Add a new restaurant in your name '});
+});
+
+Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) =>{
+    /*hotel.findOne({name_hotel: req.body.name}).then((name) =>{
+        if(name){
+            res.redirect(`${__dirname}/../views/admin/hosthotel`);
+        }
+
+        else{
+            const h = new hotel({
+                name_hotel: req.body.name,
+                country_hotel: req.body.region,
+                longitude_hotel: req.body.longitude,
+                latitude_hotel: req.body.latitude,
+                stars_hotel: req.body.rating,
+                stadia_hotel: req.body.stadia
+            });
+
+            /*bcrypt.genSalt(3 , (err, salt) =>{
+            })
+        }
+    });*/
+
+    console.log(req.body, req.file);
+    res.send('ok');
+
 });
 
 module.exports = Router;
