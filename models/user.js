@@ -34,7 +34,7 @@ const usuario = mongoose.Schema({
     isAdmin: {
         type: Boolean,
         require: true,
-        default: true
+        default: false
     },
 
     CPF_CNPJ_user:{
