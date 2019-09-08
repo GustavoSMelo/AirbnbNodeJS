@@ -20,8 +20,9 @@ const storage = multer.diskStorage({
         cb(null, file.originalname);
     }
 
-})
+});
 const upload = multer({storage});
+
 
 Router.get('/', (req, res) =>{
     res.render(`${__dirname}/../views/user/major`, {title: 'user routes'});
@@ -146,29 +147,40 @@ Router.get('/host/restaurant', isAdmin,(req, res) =>{
 });
 
 Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) =>{
-    /*hotel.findOne({name_hotel: req.body.name}).then((name) =>{
+    hotel.findOne({name_hotel: req.body.name}).then((name) =>{
         if(name){
             res.redirect(`${__dirname}/../views/admin/hosthotel`);
         }
 
         else{
+
+            let img = req.file.path;
+
             const h = new hotel({
                 name_hotel: req.body.name,
                 country_hotel: req.body.region,
                 longitude_hotel: req.body.longitude,
                 latitude_hotel: req.body.latitude,
                 stars_hotel: req.body.rating,
-                stadia_hotel: req.body.stadia
+                stadia_hotel: req.body.stadia,
+                image_hotel: img
+            }).save().then(() =>{
+                console.log('Success to create a new hotel ');
+                res.redirect('/user/host/view/hotel');
+                console.log(req.file.path);
+            }).catch((err) =>{
+                console.error(`Error to create a new hotel: ${err} `);
             });
 
             /*bcrypt.genSalt(3 , (err, salt) =>{
-            })
+            })*/
         }
-    });*/
+    });
 
-    console.log(req.body, req.file);
-    res.send('ok');
+});
 
+Router.get('/host/view/hotel', isAdmin, (req, res) =>{
+    res.render(`${__dirname}/../views/admin/viewhotel`);
 });
 
 module.exports = Router;
