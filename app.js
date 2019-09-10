@@ -38,7 +38,7 @@
     
     //bodyparser
         app.use(body_parser.json());
-        app.use(body_parser.urlencoded({extended: true}));
+        app.use(body_parser.urlencoded({extended: false}));
 
     //routes
         app.use('/user', user);
@@ -56,7 +56,7 @@
     })
 
 //other
-
+    app.use('/user/host/view/hotel',express.static('uploads'));
     app.use(express.static(path.join(__dirname,'public')));
 
     const PORT = 9997;
