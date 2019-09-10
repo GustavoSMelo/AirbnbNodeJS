@@ -41,6 +41,11 @@ const hotel = mongoose.Schema({
         require: true
     },
 
+    name_img:{
+        type: String,
+        required: true,
+    },
+
     createAt: {
         type: Date,
         require: true, 
