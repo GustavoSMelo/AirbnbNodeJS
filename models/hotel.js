@@ -1,7 +1,8 @@
 "use strict";
 
 const mongoose = require('mongoose');
-
+const handlebars = require('handlebars');
+//const template = handlebars.compile(source);
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/airbnb', {useNewUrlParser: true});
 
@@ -39,11 +40,6 @@ const hotel = mongoose.Schema({
     image_hotel: {
         type: String,
         require: true
-    },
-
-    name_img:{
-        type: String,
-        required: true,
     },
 
     createAt: {
