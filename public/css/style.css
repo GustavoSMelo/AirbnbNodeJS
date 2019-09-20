@@ -53,3 +53,15 @@
     width: 100%;
     height: 100vh;
 }
+
+.thumbnail-img-size{
+    width: 50%;
+    height: 75%;
+    border-radius: 15px;
+}
+
+@media screen and (max-width: 970px){
+    .searchbar{
+        visibility: hidden;
+    }
+}
