@@ -13,7 +13,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
-        cb(null, (`${__dirname}/../uploads/`))
+        cb(null, (`${__dirname}/../public/uploads`))
     },
 
     filename: (req, file, cb) =>{
@@ -161,8 +161,7 @@ Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) 
                 latitude_hotel: req.body.latitude,
                 stars_hotel: req.body.rating,
                 stadia_hotel: req.body.stadia,
-                image_hotel: req.file.path,
-                name_img: req.file.originalname
+                image_hotel: req.file.originalname,
             }).save().then(() =>{
                 console.log('Success to create a new hotel ');
                 res.redirect('/user/host/view/hotel');
@@ -170,9 +169,6 @@ Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) 
             }).catch((err) =>{
                 console.error(`Error to create a new hotel: ${err} `);
             });
-
-            /*bcrypt.genSalt(3 , (err, salt) =>{
-            })*/
         }
     });
 
@@ -181,6 +177,12 @@ Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) 
 Router.get('/host/view/hotel', isAdmin, (req, res) =>{
     hotel.find().then((hotel) =>{
         res.render(`${__dirname}/../views/admin/viewhotel`, {hotel: hotel, title: 'Views hotels'});
+    })
+});
+
+Router.get('/host/hotel/modify', isAdmin, (req, res) =>{
+    hotel.findOne({name_hotel: req.body.name}).then((posts) =>{
+        res.render(`${__dirname}/../views/admin/modifyHotel`, {posts: posts});
     })
 });
 
