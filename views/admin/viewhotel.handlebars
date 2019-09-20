@@ -1,7 +1,18 @@
-{{#each hotel}}
-    <img src="{{name_img}}"/>
-    <br/>imagem: <img src="{{image_hotel}}"/>
-    <br/>nome: {{name_hotel}}
-    <br/>longitude: {{longitude_hotel}}
-    <br/>latitude: {{latitude_hotel}}
-{{/each}}
+
+<section class="text-center">
+    {{#each hotel}}
+
+        <article class="card">
+            <header class="card-header"><h1>{{name_hotel}}</h1> </header>
+            <section class="card-body">
+                <img class="thumbnail-img-size" src="/uploads/{{image_hotel}}"/>
+                <br/><h6>longitude: {{longitude_hotel}}</h6>
+                <br/><h6>latitude: {{latitude_hotel}}</h6>
+            </section>
+            <footer class="card-footer">
+                <a href="/user/host/hotel/modify"><button type="button" class="btn btn-outline-primary m-5"><i class="fas fa-pencil-alt"></i> Edit</button></a>
+            </footer>
+        </article>
+        <br/>
+    {{/each}}
+</section>
