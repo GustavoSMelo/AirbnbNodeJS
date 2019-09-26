@@ -46,6 +46,11 @@ const hotel = mongoose.Schema({
         type: Date,
         require: true, 
         default: Date.now()
+    },
+
+    id_creator:{
+        type: mongoose.Schema.Types.ObjectId,
+        require: true
     }
 });
 
