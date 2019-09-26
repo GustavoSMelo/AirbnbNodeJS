@@ -139,7 +139,9 @@ Router.get('/add/localization', isAdmin, (req, res) =>{
 });
 
 Router.get('/host/hotel', isAdmin,(req, res) =>{
-    res.render(`${__dirname}/../views/admin/hosthotel`, {title: 'Add a new hotel in your name'});
+    user.findOne().then((host) =>{
+        res.render(`${__dirname}/../views/admin/hosthotel`, {title: 'Add a new hotel in your name', host: host});
+    });
 });
 
 Router.get('/host/restaurant', isAdmin,(req, res) =>{
@@ -162,6 +164,7 @@ Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) 
                 stars_hotel: req.body.rating,
                 stadia_hotel: req.body.stadia,
                 image_hotel: req.file.originalname,
+                id_creator: req.body.txtId 
             }).save().then(() =>{
                 console.log('Success to create a new hotel ');
                 res.redirect('/user/host/view/hotel');
@@ -174,15 +177,15 @@ Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) 
 
 });
 
-Router.get('/host/view/hotel', isAdmin, (req, res) =>{
-    hotel.find().then((hotel) =>{
+Router.get('/host/view/hotel/:id', isAdmin, (req, res) =>{
+    hotel.find({id_creator: req.params.id}).then((hotel) =>{
         res.render(`${__dirname}/../views/admin/viewhotel`, {hotel: hotel, title: 'Views hotels'});
     })
 });
 
-Router.get('/host/hotel/modify', isAdmin, (req, res) =>{
-    hotel.findOne({name_hotel: req.body.name}).then((posts) =>{
-        res.render(`${__dirname}/../views/admin/modifyHotel`, {posts: posts});
+Router.get('/host/hotel/modify/:id', isAdmin, (req, res) =>{
+    hotel.findOne({_id: req.params.id}).then((posts) =>{
+        res.render(`${__dirname}/../views/admin/modifyHotel`, {posts: posts, title: 'modify a hotel inserted'});
     })
 });
 
