@@ -1,38 +1,41 @@
-<form class="form-group text-center m-5" method="POST" action="/user/host/hotel/add" enctype="multipart/form-data">
-        <label>Name of hotel: </label>
-        <input class="form-control" placeholder="insert a name of hotel here" name="name" required="required"/>
 
-        <br/>
-        <label>Image of hotel: </label>
-        <input type="file" class="form-control" required="required" name="image-file" />
+{{#each posts}}
+    <form class="form-group text-center m-5" method="POST" action="/user/host/hotel/add" enctype="multipart/form-data">
+            <label>Name of hotel: </label>
+            <input class="form-control" placeholder="insert a name of hotel here" value="{{name_hotel}}" name="name" required="required"/>
 
-        <br/>
-        <label>Region of world: </label>
-        <select class="form-control" name="region" required="required">
-            <option></option>
-            <option value="Europa">Europa</option>
-            <option value="SA">South America</option>
-            <option value="NA">North America</option>
-            <option value="Asia">Asia</option>
-            <option value="Africa">Africa</option>
-        </select>
+            <br/>
+            <label>Image of hotel: </label>
+            <input type="file" class="form-control" required="required" name="image-file" />
 
-        <label>Rating Stars: </label>
-        <input type="text" placeholder="Insert your rating here... " name="rating" required="required" class="form-control"/>
+            <br/>
+            <label>Region of world: </label>
+            <select class="form-control" name="region" required="required">
+                <option></option>
+                <option value="Europa">Europa</option>
+                <option value="SA">South America</option>
+                <option value="NA">North America</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+            </select>
 
-        <label>Stadia: (in dollars USD$)</label>
-        <input type="text" placeholder="Insert stadia for day... " name="stadia" required="required" class="form-control"/>
+            <label>Rating Stars: </label>
+            <input type="text" placeholder="Insert your rating here... " name="rating" required="required" class="form-control"/>
 
-        <br/>
-        <article class="card">
-            <section class="card-body">
-                <section id="map"></section>
-            </section>
-            <footer class="card-footer">
-                <input type="text" readonly placeholder="longitude" id="longitudeinput" name="longitude" class="longitudeinput form-control m-2" required="required"/>
-                <input type="text" readonly id="latitudeinput" placeholder="latitude" name="latitude" class="latitudeinput form-control m-2" required="required"/>
-            </footer>
-        </article>
+            <label>Stadia: (in dollars USD$)</label>
+            <input type="text" placeholder="Insert stadia for day... " name="stadia" required="required" class="form-control"/>
 
-        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Register a new hotel</button>
-</form>
+            <br/>
+            <article class="card">
+                <section class="card-body">
+                    <section id="map"></section>
+                </section>
+                <footer class="card-footer">
+                    <input type="text" readonly placeholder="longitude" id="longitudeinput" name="longitude" class="longitudeinput form-control m-2" required="required"/>
+                    <input type="text" readonly id="latitudeinput" placeholder="latitude" name="latitude" class="latitudeinput form-control m-2" required="required"/>
+                </footer>
+            </article>
+
+            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Register a new hotel</button>
+    </form>
+{{/each}}
