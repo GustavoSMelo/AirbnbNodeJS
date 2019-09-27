@@ -189,4 +189,27 @@ Router.get('/host/hotel/modify/:id', isAdmin, (req, res) =>{
     })
 });
 
+Router.post('/host/hotel/modify/changed', isAdmin,upload.single('image-file'), (req, res) =>{
+    hotel.findOne({_id: req.body.id}).then((hotel) =>{
+        
+            hotel.name_hotel = req.body.name,
+            hotel.country_hotel = req.body.region,
+            hotel.longitude_hotel = req.body.longitude,
+            hotel.latitude_hotel = req.body.latitude,
+            hotel.stars_hotel = req.body.rating,
+            hotel.stadia_hotel = req.body.stadia,
+            hotel.image_hotel = req.file.originalname,
+            hotel.id_creator = req.body.id 
+        hotel.save().then(() =>{
+            res.redirect(`${__dirname}/../views/index`);
+        });
+    });
+});
+
+//Tem que realizar a rota para modificar e excluir o hotel já inserido! 
+
+Router.get('/host/restaurant/new', isAdmin, (req, res) =>{
+    res.render(`${__dirname}/../views/admin/hostrestaurant`);
+});
+
 module.exports = Router;
