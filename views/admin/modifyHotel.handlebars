@@ -1,8 +1,9 @@
 
-{{#each posts}}
-    <form class="form-group text-center m-5" method="POST" action="/user/host/hotel/add" enctype="multipart/form-data">
+    <form class="form-group text-center m-5" method="POST" action="/user/host/hotel/modify/changed" enctype="multipart/form-data">
+        <input type="hidden" value="{{posts._id}}" name="id"/>
+
             <label>Name of hotel: </label>
-            <input class="form-control" placeholder="insert a name of hotel here" value="{{name_hotel}}" name="name" required="required"/>
+            <input class="form-control" placeholder="before: {{posts.name_hotel}}" value="{{posts.name_hotel}}" name="name" required="required"/>
 
             <br/>
             <label>Image of hotel: </label>
@@ -20,10 +21,10 @@
             </select>
 
             <label>Rating Stars: </label>
-            <input type="text" placeholder="Insert your rating here... " name="rating" required="required" class="form-control"/>
+            <input type="text" placeholder="Insert your rating here... " value="{{posts.stars_hotel}}" name="rating" required="required" class="form-control"/>
 
             <label>Stadia: (in dollars USD$)</label>
-            <input type="text" placeholder="Insert stadia for day... " name="stadia" required="required" class="form-control"/>
+            <input type="text" placeholder="Insert stadia for day... " value="{{posts.stadia_hotel}}" name="stadia" required="required" class="form-control"/>
 
             <br/>
             <article class="card">
@@ -31,11 +32,10 @@
                     <section id="map"></section>
                 </section>
                 <footer class="card-footer">
-                    <input type="text" readonly placeholder="longitude" id="longitudeinput" name="longitude" class="longitudeinput form-control m-2" required="required"/>
-                    <input type="text" readonly id="latitudeinput" placeholder="latitude" name="latitude" class="latitudeinput form-control m-2" required="required"/>
+                    <input type="text" readonly placeholder="longitude" id="longitudeinput" value="{{posts.longitude_hotel}}" name="longitude" class="longitudeinput form-control m-2" required="required"/>
+                    <input type="text" readonly id="latitudeinput" placeholder="latitude" name="latitude" value = "{{posts.latitude_hotel}}" class="latitudeinput form-control m-2" required="required"/>
                 </footer>
             </article>
 
-            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Register a new hotel</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i>Change values of hotel </button>
     </form>
-{{/each}}
