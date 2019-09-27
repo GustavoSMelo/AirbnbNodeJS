@@ -1,0 +1,25 @@
+<form class="form-group text-center m-5" method="POST" action="/user/host/hotel/add" enctype="multipart/form-data">
+        <label>Name of restaurant: </label>
+        <input class="form-control" placeholder="insert a name of hotel here" name="name" required="required"/>
+
+        <br/>
+        <label>Image of restaurant: </label>
+        <input type="file" class="form-control" required="required" name="image-file" />
+
+        <label>Rating Stars: </label>
+        <input type="text" placeholder="Insert your rating here... " name="rating" required="required" class="form-control"/>
+
+        <br/>
+        <article class="card">
+            <section class="card-body">
+                <section id="map"></section>
+            </section>
+            <footer class="card-footer">
+                <input type="text" readonly placeholder="longitude" id="longitudeinput" name="longitude" class="longitudeinput form-control m-2" required="required"/>
+                <input type="text" readonly id="latitudeinput" placeholder="latitude" name="latitude" class="latitudeinput form-control m-2" required="required"/>
+            </footer>
+        </article>
+
+        <input type="hidden" name="txtId" value="{{user._id}}" />
+        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Register a new hotel</button>
+</form>
