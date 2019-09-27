@@ -60,6 +60,25 @@
     border-radius: 15px;
 }
 
+.card-custom{
+    width: 30vh;
+    box-shadow: 1px 1px 3px #505050;
+    margin: 5px;
+}
+
+.card-link{
+    color: #606060;
+}
+
+.card-link:hover{
+    color: #303030;
+}
+
+.card-custom img{
+    width: 100%;
+    height: 100%;
+}
+
 @media screen and (max-width: 970px){
     .searchbar{
         visibility: hidden;
