@@ -11,13 +11,23 @@ const restaurant = mongoose.Schema({
         require: true
     },
 
-    localization_restaurant: {
+    longitude_restaurant: {
+        type: String,
+        require: true
+    },
+
+    latitude_restaurant: {
         type: String,
         require: true
     },
 
     rating_restaurant:{
         type: Number,
+        require: true
+    },
+
+    name_image_restaurant: {
+        type: String,
         require: true
     }
 });
