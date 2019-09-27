@@ -11,6 +11,7 @@
     const passport = require('passport');
     require('./config/authentication');
     const flash = require('connect-flash');
+    const hotel = require('./models/hotel');
     //const admin = require('./routes/adminRoutes');
 //configurations
 
@@ -47,7 +48,9 @@
 //routes
 
     app.get('/', (req, res) =>{
-        res.render(`${__dirname}/views/index`, {title: 'Home page Airbnb'});
+        hotel.find().sort({data: 'desc'}).then((hotel) =>{
+            res.render(`${__dirname}/views/index`, {hotel: hotel ,title: 'Home page Airbnb'});
+        });
     });
 
     
