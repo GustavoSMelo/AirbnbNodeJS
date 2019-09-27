@@ -94,3 +94,20 @@
         </section>
     </section>
 </article>
+
+<article class="row mt-5">
+    {{#each hotel}}
+        <a href="#" class="card-link">
+            <section class="card card-custom">
+                <header class="card-header">
+                    <img class="img-fluid rounded" src="uploads/{{image_hotel}}">
+                </header>
+                <section class="p-5">
+                    <h3>{{name_hotel}}</h3>
+                    Stars: {{stars_hotel}}<br/>
+                    Stadia: {{stadia_hotel}}USD$<br/>
+                </section>
+            </section>
+        </a>
+    {{/each}}
+</article>
