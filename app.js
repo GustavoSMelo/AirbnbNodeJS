@@ -29,7 +29,7 @@
 
         app.use((req, res, next) =>{
             res.locals.user = req.user || null;
-            res.locals.admin = req.admin || null;
+            //res.locals.admin = req.admin || null;
             next(); 
         });
 
@@ -59,7 +59,7 @@
     })
 
 //other
-    app.use('/user/host/view/hotel',express.static('uploads'));
+    //app.use('/user/host/view/hotel',express.static('uploads'));
     app.use(express.static(path.join(__dirname,'public')));
 
     const PORT = 9997;
