@@ -1,7 +1,7 @@
 
 <section class="text-center">
     {{#each hotel}}
-
+        <form method="POST" action="/user/host/hotel/delete/{{id}}">
             <article class="card">
                 <header class="card-header"><h1>{{name_hotel}}</h1> </header>
                 <section class="card-body">
@@ -11,8 +11,11 @@
                 </section>
                 <footer class="card-footer">
                     <a href="/user/host/hotel/modify/{{id}}"><button type="button" class="btn btn-outline-primary m-5"><i class="fas fa-pencil-alt"></i> Edit</button></a>
+
+                    <button type="submit" class="btn btn-outline-danger"><i class="fas fa-times-circle"></i> Delete</button>
                 </footer>
             </article>
             <br/>
+        </form>
     {{/each}}
 </section>
