@@ -164,7 +164,8 @@ Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) 
                 stars_hotel: req.body.rating,
                 stadia_hotel: req.body.stadia,
                 image_hotel: req.file.originalname,
-                id_creator: req.body.txtId 
+                id_creator: req.body.txtId ,
+                description: req.body.description
             }).save().then(() =>{
                 console.log('Success to create a new hotel ');
                 res.redirect('/user/host/view/hotel');
@@ -191,7 +192,6 @@ Router.get('/host/hotel/modify/:id', isAdmin, (req, res) =>{
 
 Router.post('/host/hotel/modify/changed', isAdmin,upload.single('image-file'), (req, res) =>{
     hotel.findOne({_id: req.body.id}).then((hotel) =>{
-        
             hotel.name_hotel = req.body.name,
             hotel.country_hotel = req.body.region,
             hotel.longitude_hotel = req.body.longitude,
@@ -199,14 +199,21 @@ Router.post('/host/hotel/modify/changed', isAdmin,upload.single('image-file'), (
             hotel.stars_hotel = req.body.rating,
             hotel.stadia_hotel = req.body.stadia,
             hotel.image_hotel = req.file.originalname,
-            hotel.id_creator = req.body.id 
+            hotel.id_creator,
+            hotel.description = req.body.description
         hotel.save().then(() =>{
-            res.redirect(`${__dirname}/../views/index`);
+            res.redirect(`/`);
         });
     });
 });
 
-//Tem que realizar a rota para modificar e excluir o hotel já inserido! 
+Router.post('/host/hotel/delete/:id', (req, res) =>{
+    hotel.findOne({_id: req.params.id}).then((hotel) =>{
+        hotel.remove().then(() =>{
+            res.redirect('/');
+        });
+    });
+});
 
 Router.get('/host/restaurant/new', isAdmin, (req, res) =>{
     res.render(`${__dirname}/../views/admin/hostrestaurant`);
