@@ -1,0 +1,68 @@
+<section class="row">
+    <hgroup class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-5">
+        <h1 class="text-center">{{posts.name_hotel}}</h1>
+    </hgroup>
+
+    <figure class="page-figure col-xl-8 col-lg-8 col-md-12 col-sm-12 mt-5">
+        <img src="/uploads/{{posts.image_hotel}}"/>
+    </figure>
+
+    <span class="mt-5 col-xl-4 col-lg-4 col-md-12 col-sm-12 font-custom">
+        <strong>
+            Rating <i class="fas fa-star color-yellow"></i>: {{posts.stars_hotel}}<br/><br/>
+
+            Price a day: <i class="fas fa-money-bill-alt color-green-custom"></i> {{posts.stadia_hotel}} USD$<br/><br/>
+
+            localization in world <i class="fas fa-globe-europe"></i>: {{posts.country_hotel}}
+            
+            <br/> <br/>
+            Loved this hotel: <i class="fas fa-heart"></i>
+            <br/>
+        </strong>
+    </span>
+
+    <span class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-justify-custom">
+        <strong><h1>Description: </h1></strong><br/>
+        <p>{{posts.description}}</p>
+    </span>
+
+    {{#if user}}
+        <form method="POST" action="/user/hotel/page/commentary/add" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-2">
+            <section >
+            <textarea name="comment" class="form-control" placeholder="Leave your commentary here..."></textarea>
+            <br/>
+
+            <input type="hidden" name="id_hotel" value="{{posts._id}}"/>
+            <input type="hidden" name="id_user" value="{{user._id}}"/>
+            <input type="hidden" name="name_user" value="{{user.name_user}}"/>
+            <button type="submit" class="btn btn-outline-primary">Send</button>
+            </section>
+        </form>
+        {{else}}
+            <section class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-2">
+                <h1 class="text-center">Do a login for leave one commentary</h1>
+            </section>
+    {{/if}}
+
+    <br/>
+    <br/>
+    <h2 class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-5">Commentarys: </h2>
+    {{#if comment}}
+        {{#each comment}}
+            <br/>
+            <section class="card col-xl-12 col-lg-12 col-md-12 col-sm-12 m-2">
+                <header class="card-header">
+                    <H1><i class="fas fa-user"></i> {{name_creator_commentary}}</H1>
+                </header>
+                <article>
+                    <h3 class="p-3">{{commentary}}</h3>
+                </article>
+            </section>
+            <br/>
+        {{/each}}
+        {{else}}
+            <section class="jumbotron">
+                <h1>Don't Have commentarys in this hotel, be a first to comment</h1>
+            </section>
+    {{/if}}
+</section>
