@@ -10,6 +10,7 @@ require('./../config/authentication')(passport);
 const {isAdmin} = require('./../Helpers/isAdmin');
 const hotel = require('./../models/hotel');
 const multer = require('multer');
+const commentary = require('../models/commentary');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
@@ -217,6 +218,25 @@ Router.post('/host/hotel/delete/:id', (req, res) =>{
 
 Router.get('/host/restaurant/new', isAdmin, (req, res) =>{
     res.render(`${__dirname}/../views/admin/hostrestaurant`);
+});
+
+Router.get('/hotel/page/:id', (req, res) =>{
+    hotel.findOne({_id: req.params.id}).then((posts) =>{
+        commentary.find({id_hotel: req.params.id}).then((comment) =>{
+            res.render(`${__dirname}/../views/admin/pagehotel`, {title: 'Visualize hotel', posts: posts, comment: comment});
+        });
+    });
+})
+
+Router.post('/hotel/page/commentary/add', (req, res) =>{
+    new commentary({
+        commentary: req.body.comment,
+        name_creator_commentary: req.body.name_user,
+        id_creator_commentary: req.body.id_user,
+        id_hotel: req.body.id_hotel
+    }).save().then(() =>{
+        res.redirect('back');
+    });
 });
 
 module.exports = Router;
