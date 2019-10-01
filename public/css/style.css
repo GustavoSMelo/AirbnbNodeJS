@@ -78,6 +78,27 @@
     width: 100%;
     height: 100%;
 }
+.color-yellow{
+    color: #dfe245;
+    text-shadow: 1px 1px 2px #909090;
+}
+
+.font-custom{
+    font-size: 18pt;
+}
+
+.page-figure img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #707070;
+}
+
+.color-green-custom{
+    color: #53fb29;
+    text-shadow: 1px 1px 2px #909090;
+}
+
 
 @media screen and (max-width: 970px){
     .searchbar{
