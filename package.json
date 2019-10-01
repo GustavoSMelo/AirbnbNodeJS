@@ -21,7 +21,7 @@
     "passport-local": "^1.0.0"
   },
   "scripts": {
-    "dev": "nodemon app.js"
+    "start": "nodemon app.js"
   },
   "devDependencies": {}
 }
