@@ -1,7 +1,6 @@
 "use strict";
 
 const mongoose = require('mongoose');
-const handlebars = require('handlebars');
 //const template = handlebars.compile(source);
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/airbnb', {useNewUrlParser: true});
@@ -47,14 +46,13 @@ const hotel = mongoose.Schema({
         require: true, 
         default: Date.now()
     },
-
-    id_creator:{
-        type: mongoose.Schema.Types.ObjectId,
+    description: {
+        type: String,
         require: true
     },
 
-    description: {
-        type: String,
+    id_creator:{
+        type: mongoose.Schema.Types.ObjectId,
         require: true
     }
 });
