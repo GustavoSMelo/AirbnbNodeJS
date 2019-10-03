@@ -11,6 +11,7 @@ const {isAdmin} = require('./../Helpers/isAdmin');
 const hotel = require('./../models/hotel');
 const multer = require('multer');
 const commentary = require('../models/commentary');
+const loved = require('../models/loved');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
@@ -222,8 +223,10 @@ Router.get('/host/restaurant/new', isAdmin, (req, res) =>{
 
 Router.get('/hotel/page/:id', (req, res) =>{
     hotel.findOne({_id: req.params.id}).then((posts) =>{
-        commentary.find({id_hotel: req.params.id}).then((comment) =>{
-            res.render(`${__dirname}/../views/admin/pagehotel`, {title: 'Visualize hotel', posts: posts, comment: comment});
+        loved.findOne({id_hotel: req.params.id}).then((loved) =>{
+            commentary.find({id_hotel: req.params.id}).then((comment) =>{
+                res.render(`${__dirname}/../views/admin/pagehotel`, {title: 'Visualize hotel', posts: posts, comment: comment, loved: loved});
+            });
         });
     });
 })
@@ -236,6 +239,43 @@ Router.post('/hotel/page/commentary/add', (req, res) =>{
         id_hotel: req.body.id_hotel
     }).save().then(() =>{
         res.redirect('back');
+    });
+});
+
+Router.post('/hotel/page/loved/add/:user/:hotel', (req, res) =>{
+    loved.findOne({id_user: req.params.user}).then((user) =>{
+        if(!user){
+            new loved({
+                id_user: req.params.user,
+                id_hotel: req.params.hotel,
+                isLoved: true
+            }).save().then(() =>{
+                res.redirect('back');
+            });
+        }
+
+        else{
+            loved.findOne({isLoved: req.body.loveded}).then((loved) =>{
+                if(req.body.loveded == true || req.body.loveded == "true"){
+                    
+                        loved.id_user = req.params.user,
+                        loved.id_hotel = req.params.hotel,
+                        loved.isLoved = false
+                    loved.save().then(() =>{
+                        res.redirect('back');
+                    });
+                }
+                else if(req.body.loveded == false || req.body.loveded == "false"){
+                    
+                        loved.id_user = req.params.user,
+                        loved.id_hotel = req.params.hotel,
+                        loved.isLoved = true
+                    loved.save().then(() =>{
+                        res.redirect('back');
+                    });
+                }
+            });
+        }
     });
 });
 
