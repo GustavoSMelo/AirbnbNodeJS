@@ -17,12 +17,33 @@
     text-decoration: none;
 }
 
+.hearthLink{
+    color: #101010;
+}
+
+.hearthLink:hover{
+    color: #b84545;
+}
+
+.lovedlink{
+    color: #b84545;
+}
+
+.lovedlink:hover{
+    color: #101010;
+}
+
 .padding-top{
     padding-top: 120px;
 }
 
 .color-purple{
     color: #572581;
+}
+
+.not-background-btn{
+    background-color: #ffffff00;
+    border: none;
 }
 
 .btn-facebook{
