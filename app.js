@@ -6,12 +6,13 @@
     const handlebars = require('express-handlebars');
     const path = require('path');
     const body_parser = require('body-parser'); 
-    const user = require('./routes/userRoutes');
+    const user = require('./routes/routes');
     const session = require('express-session');
     const passport = require('passport');
     require('./config/authentication');
     const flash = require('connect-flash');
     const hotel = require('./models/hotel');
+    const restaurant = require('./models/restaurant');
     //const admin = require('./routes/adminRoutes');
 //configurations
 
@@ -49,7 +50,9 @@
 
     app.get('/', (req, res) =>{
         hotel.find().sort({data: 'desc'}).then((hotel) =>{
-            res.render(`${__dirname}/views/index`, {hotel: hotel ,title: 'Home page Airbnb'});
+            restaurant.find().sort({data: 'desc'}).then((restaurant) =>{
+                res.render(`${__dirname}/views/index`, {hotel: hotel ,title: 'Home page Airbnb', restaurant: restaurant});
+            });
         });
     });
 
