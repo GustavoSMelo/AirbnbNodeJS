@@ -13,7 +13,8 @@
         <ul class="nav navbar-nav collapse navbar-collapse" id="menuresponsive">
             <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Help</a></li>
             {{#if user.isAdmin}}
-                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="user/host/view/hotel/{{user._id}}">More </a></li>
+                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/host/view/hotel/{{user._id}}">View hotels </a></li>
+                <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/host/view/restaurant/{{user._id}}">View rest </a></li>
                 <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/host/hotel">Host a new hotel </a></li>
                 <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/host/restaurant">Host a new restaurant </a></li>
                 <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/logout">Logout </a></li>
