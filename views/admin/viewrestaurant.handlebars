@@ -1,0 +1,20 @@
+<section class="text-center">
+    {{#each restaurant}}
+        <form method="POST" action="/user/host/restaurant/delete/{{id}}">
+            <article class="card">
+                <header class="card-header"><h1>{{name_restaurant}}</h1> </header>
+                <section class="card-body">
+                    <img class="thumbnail-img-size" src="/uploads/{{name_image_restaurant}}"/>
+                    <br/><h6>longitude: {{longitude_restaurant}}</h6>
+                    <br/><h6>latitude: {{latitude_restaurant}}</h6>
+                </section>
+                <footer class="card-footer">
+                    <a href="/user/host/restaurant/modify/{{id}}"><button type="button" class="btn btn-outline-primary m-5"><i class="fas fa-pencil-alt"></i> Edit</button></a>
+
+                    <button type="submit" class="btn btn-outline-danger"><i class="fas fa-times-circle"></i> Delete</button>
+                </footer>
+            </article>
+            <br/>
+        </form>
+    {{/each}}
+</section>
