@@ -29,6 +29,11 @@ const restaurant = mongoose.Schema({
     name_image_restaurant: {
         type: String,
         require: true
+    },
+
+    user_id:{
+        type: String, 
+        require: true
     }
 });
 
