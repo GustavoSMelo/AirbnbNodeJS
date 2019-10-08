@@ -120,6 +120,10 @@
     text-shadow: 1px 1px 2px #909090;
 }
 
+.thumbnail-equals{
+    width: 100px;
+    height: 120px;
+}
 
 @media screen and (max-width: 970px){
     .searchbar{
