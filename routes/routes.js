@@ -355,7 +355,7 @@ Router.post('/restaurant/page/commentary/add', (req, res) =>{
         commentary: req.body.comment,
         name_creator_commentary: req.body.name_user,
         id_creator_commentary: req.body.id_user,
-        id_hotel: req.body.id_hotel
+        id_hotel: req.body.id_restaurant
     }).save().then(() =>{
         res.redirect('back');
     });
@@ -372,8 +372,16 @@ Router.get('/host/view/restaurant/:id',isAdmin, (req, res) =>{
 Router.post('/host/restaurant/delete/:id', isAdmin, (req, res) =>{
     restaurant.findOne({_id: req.params.id}).then((restaurant) =>{
         if(restaurant){
-            restaurant.remove({_id: req.params.id}).then(() =>{
-                res.redirect('back');
+            commentary.find({id_hotel: req.params.id}).then(() =>{
+                loved.find({id_hotel: req.params.id}).then(() =>{
+                    restaurant.remove({_id: req.params.id}).then(() =>{
+                        commentary.deleteMany({id_hotel: req.params.id}).then(() =>{
+                            loved.deleteMany({id_hotel: req.params.id}).then(() =>{
+                                res.redirect('back');
+                            });
+                        });
+                    });
+                });
             });
         }
 
