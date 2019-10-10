@@ -15,7 +15,8 @@
 
             {{#if user}}
                 {{#if loved.isLoved}}
-                    <form method="POST" action="/user/restaurant/page/loved/add/{{user._id}}/{{restaurant._id}}/{{loved.isLoved}}">
+                    <input type="hidden" value="{{loved._id}}" name="loveId"/>
+                    <form method="POST" action="/user/restaurant/page/loved/add/{{user._id}}/{{restaurant._id}}">
                         Remove loved this restaurant:
                         <button class="lovedlink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
                         <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>
@@ -27,7 +28,7 @@
 
                     {{else}}
 
-                        <form method="POST" action="/user/restaurant/page/loved/add/{{user._id}}/{{restaurant._id}}/{{loved.isLoved}}">
+                        <form method="POST" action="/user/restaurant/page/loved/add/{{user._id}}/{{restaurant._id}}">
                             Loved this restaurant:
                             <button class="hearthLink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
                             <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>

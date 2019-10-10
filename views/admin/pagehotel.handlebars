@@ -16,31 +16,32 @@
             localization in world <i class="fas fa-globe-europe"></i>: {{posts.country_hotel}}
             
             <br/> <br/>
-
+            
             {{#if user}}
                 {{#if loved.isLoved}}
-                    <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}">
-                        Remove loved this hotel:
-                        <button class="lovedlink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
-                        <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>
+                        <input type="hidden" value="{{loved._id}}" name="loveId"/>
+                        <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}">
+                            Remove loved this hotel:
+                            <button class="lovedlink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
+                            <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>
 
-                        <br/>
-                        <br/>
-                        <h2>You loved this hotel 😍</h2>
-                    </form>
+                            <br/>
+                            <br/>
+                            <h2>You loved this hotel 😍</h2>
+                        </form>
 
-                    {{else}}
-
-                    <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}">
-                        Loved this hotel:
-                        <button class="hearthLink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
-                        <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>
+                        {{else}}
                         
+                            <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}">
+                                Loved this hotel:
+                                <button class="hearthLink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
+                                <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>
+                                
 
-                        <br/>
-                        <br/>
-                        <h2>You not loved this hotel yet 😶</h2>
-                    </form>
+                                <br/>
+                                <br/>
+                                <h2>You not loved this hotel yet 😶</h2>
+                            </form>
                 {{/if}}
             {{/if}}
             <input type="hidden" name="id_user" value="{{user._id}}"/>
