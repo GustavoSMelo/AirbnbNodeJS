@@ -210,10 +210,18 @@ Router.post('/host/hotel/modify/changed', isAdmin,upload.single('image-file'), (
     });
 });
 
-Router.post('/host/hotel/delete/:id', (req, res) =>{
-    hotel.findOne({_id: req.params.id}).then((hotel) =>{
-        hotel.remove().then(() =>{
-            res.redirect('/');
+Router.post('/host/hotel/delete/:id', isAdmin,(req, res) =>{
+    hotel.findOne({_id: req.params.id}).then(() =>{
+        commentary.find({id_hotel: req.params.id}).then(() =>{
+            loved.find({id_hotel:req.params.id}).then(() =>{
+                hotel.deleteOne({_id: req.params.id}).then(() =>{
+                    commentary.deleteMany({id_hotel: req.params.id}).then(() =>{
+                        loved.remove({id_hotel: req.params.id}).then(() =>{
+                            res.redirect('/');
+                        });
+                    });
+                });
+            });
         });
     });
 });
@@ -262,8 +270,8 @@ Router.post('/hotel/page/commentary/add', (req, res) =>{
 });
 
 Router.post('/hotel/page/loved/add/:user/:hotel', (req, res) =>{
-    loved.findOne({id_user: req.params.user}).then((user) =>{
-        if(!user){
+    loved.findOne({_id: req.body.loveId}).then((user) =>{
+        if(req.body.loveded == null || req.body.loveded == ""){
             new loved({
                 id_user: req.params.user,
                 id_hotel: req.params.hotel,
@@ -313,9 +321,9 @@ Router.get('/restaurant/page/:id', (req, res) =>{
     });
 });
 
-Router.post('/restaurant/page/loved/add/:user/:restaurant/:tf', (req, res) =>{
-    loved.findOne({id_user: req.params.user}).then((user) =>{
-        if(!user){
+Router.post('/restaurant/page/loved/add/:user/:restaurant', (req, res) =>{
+    loved.findOne({_id: req.body.loveId}).then((user) =>{
+        if(req.body.loveded == "" || req.body.loveded == null || req.body.loveded == undefined){
             new loved({
                 id_user: req.params.user,
                 id_hotel: req.params.restaurant,
@@ -326,7 +334,7 @@ Router.post('/restaurant/page/loved/add/:user/:restaurant/:tf', (req, res) =>{
         }
 
         else{
-            loved.findOne({isLoved: req.params.tf}).then((loved) =>{
+            loved.findOne({isLoved: req.body.loveded}).then((loved) =>{
                 if(req.body.loveded == true || req.body.loveded == "true"){
                     
                         loved.id_user = req.params.user,
