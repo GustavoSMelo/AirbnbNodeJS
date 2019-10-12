@@ -22,7 +22,13 @@ const love = mongoose.Schema({
     isLoved: {
         type: Boolean,
         default: false
-    }
+    },
+
+    name_hotel: String,
+
+    image_hotel: String,
+
+    isHotel: Boolean
 });
 
 mongoose.model('loved', love);
