@@ -7,6 +7,9 @@
         <img src="/uploads/{{posts.image_hotel}}"/>
     </figure>
 
+    <input type="hidden" value="{{posts.name_hotel}}" name="name_hr"/>
+    <input type="hidden" value="{{posts.image_hotel}}" name="image_hr"/>
+
     <span class="mt-5 col-xl-4 col-lg-4 col-md-12 col-sm-12 font-custom">
         <strong>
             Rating <i class="fas fa-star color-yellow"></i>: {{posts.stars_hotel}}<br/><br/>
@@ -20,7 +23,7 @@
             {{#if user}}
                 {{#if loved.isLoved}}
                         <input type="hidden" value="{{loved._id}}" name="loveId"/>
-                        <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}">
+                        <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}/{{posts.name_hotel}}/{{posts.image_hotel}}">
                             Remove loved this hotel:
                             <button class="lovedlink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
                             <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>
@@ -32,7 +35,7 @@
 
                         {{else}}
                         
-                            <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}">
+                            <form method="POST" action="/user/hotel/page/loved/add/{{user._id}}/{{posts._id}}/{{posts.name_hotel}}/{{posts.image_hotel}}">
                                 Loved this hotel:
                                 <button class="hearthLink not-background-btn" type="submit"><i class="fas fa-heart"></i></button>
                                 <input type="hidden" value="{{loved.isLoved}}" name="loveded"/>
