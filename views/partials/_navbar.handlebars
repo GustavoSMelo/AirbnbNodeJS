@@ -21,7 +21,7 @@
                 {{else}}
                     {{#if user}}
                         <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Travels</a></li>
-                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">Loved</a></li>
+                        <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/loves/{{user._id}}">Loved</a></li>
                         <li class="nav-item m-2"><a class="nav-link link-onmouse" href="#">{{user.name_user}} <i class="fas fa-user"></i></a></li>
                         <li class="nav-item m-2"><a class="nav-link link-onmouse" href="/user/logout">Logout </a></li>
                     {{else}}
