@@ -1,0 +1,26 @@
+<article class="row mt-5">
+    <h1 class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center mt-5">Hotel(s) and restaurants that you give like(s)</h1>
+
+    <br/>
+    {{#each loved}}
+        {{#if isHotel}}
+            <section class="card card-custom m-5 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                <header class="card-header">{{name_hotel}}</header>
+                <section class="card-body">
+                    <img class="img-fluid rounded" src="/uploads/{{image_hotel}}"/>
+                </section>
+                <footer>
+                    <a href="/user/hotel/page/{{id_hotel}}" class="m-2">
+                        <button type="button" class="btn btn-primary text-center m-5">Acess this Hotel</button>
+                    </a>
+                </footer>
+            </section>
+            
+        {{/if}}
+
+        {{else}}
+            <section class="jumbotron">
+                <h3>We can't find any hotel or restaurants that you give like<br/> sorry :(</h3>
+            </section>
+    {{/each}}
+</article>
