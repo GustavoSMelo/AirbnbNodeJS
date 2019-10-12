@@ -269,13 +269,16 @@ Router.post('/hotel/page/commentary/add', (req, res) =>{
     });
 });
 
-Router.post('/hotel/page/loved/add/:user/:hotel', (req, res) =>{
+Router.post('/hotel/page/loved/add/:user/:hotel/:name/:img', (req, res) =>{
     loved.findOne({_id: req.body.loveId}).then((user) =>{
         if(req.body.loveded == null || req.body.loveded == ""){
             new loved({
                 id_user: req.params.user,
                 id_hotel: req.params.hotel,
-                isLoved: true
+                isLoved: true,
+                name_hotel: req.params.name,
+                image_hotel: req.params.img,
+                isHotel: true
             }).save().then(() =>{
                 res.redirect('back');
             });
@@ -287,7 +290,10 @@ Router.post('/hotel/page/loved/add/:user/:hotel', (req, res) =>{
                     
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.hotel,
-                        loved.isLoved = false
+                        loved.isLoved = false,
+                        name_hotel = req.params.name,
+                        image_hotel = req.params.img,
+                        isHotel = true
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -296,7 +302,10 @@ Router.post('/hotel/page/loved/add/:user/:hotel', (req, res) =>{
                     
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.hotel,
-                        loved.isLoved = true
+                        loved.isLoved = true,
+                        name_hotel = req.params.name,
+                        image_hotel = req.params.img,
+                        isHotel = true
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -321,13 +330,16 @@ Router.get('/restaurant/page/:id', (req, res) =>{
     });
 });
 
-Router.post('/restaurant/page/loved/add/:user/:restaurant', (req, res) =>{
+Router.post('/restaurant/page/loved/add/:user/:restaurant/:name/:img', (req, res) =>{
     loved.findOne({_id: req.body.loveId}).then((user) =>{
         if(req.body.loveded == "" || req.body.loveded == null || req.body.loveded == undefined){
             new loved({
                 id_user: req.params.user,
                 id_hotel: req.params.restaurant,
-                isLoved: true
+                isLoved: true,
+                name_hotel: req.params.name,
+                image_hotel: req.params.img,
+                isHotel: false
             }).save().then(() =>{
                 res.redirect('back');
             });
@@ -339,7 +351,10 @@ Router.post('/restaurant/page/loved/add/:user/:restaurant', (req, res) =>{
                     
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.restaurant,
-                        loved.isLoved = false
+                        loved.isLoved = false,
+                        name_hotel= req.params.name,
+                        image_hotel= req.params.img,
+                        isHotel = false
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -348,7 +363,10 @@ Router.post('/restaurant/page/loved/add/:user/:restaurant', (req, res) =>{
                     
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.restaurant,
-                        loved.isLoved = true
+                        loved.isLoved = true,
+                        name_hotel = req.params.name
+                        image_hotel = req.params.img,
+                        isHotel = false
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -396,6 +414,12 @@ Router.post('/host/restaurant/delete/:id', isAdmin, (req, res) =>{
         else{
             res.redirect('/404');
         }
+    });
+});
+
+Router.get('/loves/:id', (req, res) =>{
+    loved.find({id_user: req.params.id}).then((loved) =>{
+        res.render(`${__dirname}/../views/user/pageloves`, {loved: loved, title: 'User page: Loves '});
     });
 });
 
