@@ -167,11 +167,11 @@ Router.post('/host/hotel/add', isAdmin, upload.single('image-file') ,(req, res) 
                 stars_hotel: req.body.rating,
                 stadia_hotel: req.body.stadia,
                 image_hotel: req.file.originalname,
-                id_creator: req.body.txtId ,
+                id_creator: req.body.txtId,
                 description: req.body.description
             }).save().then(() =>{
                 console.log('Success to create a new hotel ');
-                res.redirect('/user/host/view/hotel/:id');
+                res.redirect('/');
                 console.log(req.file.path);
             }).catch((err) =>{
                 console.error(`Error to create a new hotel: ${err} `);
@@ -291,9 +291,9 @@ Router.post('/hotel/page/loved/add/:user/:hotel/:name/:img', (req, res) =>{
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.hotel,
                         loved.isLoved = false,
-                        name_hotel = req.params.name,
-                        image_hotel = req.params.img,
-                        isHotel = true
+                        loved.name_hotel = req.params.name,
+                        loved.image_hotel = req.params.img,
+                        loved.isHotel = true
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -303,9 +303,9 @@ Router.post('/hotel/page/loved/add/:user/:hotel/:name/:img', (req, res) =>{
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.hotel,
                         loved.isLoved = true,
-                        name_hotel = req.params.name,
-                        image_hotel = req.params.img,
-                        isHotel = true
+                        loved.name_hotel = req.params.name,
+                        loved.image_hotel = req.params.img,
+                        loved.isHotel = true
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -352,9 +352,9 @@ Router.post('/restaurant/page/loved/add/:user/:restaurant/:name/:img', (req, res
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.restaurant,
                         loved.isLoved = false,
-                        name_hotel= req.params.name,
-                        image_hotel= req.params.img,
-                        isHotel = false
+                        loved.name_hotel= req.params.name,
+                        loved.image_hotel= req.params.img,
+                        loved.isHotel = false
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -364,9 +364,9 @@ Router.post('/restaurant/page/loved/add/:user/:restaurant/:name/:img', (req, res
                         loved.id_user = req.params.user,
                         loved.id_hotel = req.params.restaurant,
                         loved.isLoved = true,
-                        name_hotel = req.params.name
-                        image_hotel = req.params.img,
-                        isHotel = false
+                        loved.name_hotel = req.params.name
+                        loved.image_hotel = req.params.img,
+                        loved.isHotel = false
                     loved.save().then(() =>{
                         res.redirect('back');
                     });
@@ -420,6 +420,18 @@ Router.post('/host/restaurant/delete/:id', isAdmin, (req, res) =>{
 Router.get('/loves/:id', (req, res) =>{
     loved.find({id_user: req.params.id}).then((loved) =>{
         res.render(`${__dirname}/../views/user/pageloves`, {loved: loved, title: 'User page: Loves '});
+    });
+});
+
+Router.get('/all/hotels', (req, res) =>{
+    hotel.find().sort({data: 'desc'}).then((hotels) =>{
+        res.render(`${__dirname}/../views/user/allhotels`, {title: 'All hotels inserteds', hotels: hotels});
+    });
+});
+
+Router.get('/all/restaurants', (req, res) =>{
+    restaurant.find().sort({data: 'desc'}).then((restaurant) =>{
+        res.render(`${__dirname}/../views/user/allrestaurants`, {title: 'All restaurants inserteds', restaurant: restaurant});
     });
 });
 
