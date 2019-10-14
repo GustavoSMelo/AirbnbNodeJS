@@ -125,6 +125,10 @@
     height: 120px;
 }
 
+.background-color-footer{
+    background-color: #e2d1d1;
+}
+
 @media screen and (max-width: 970px){
     .searchbar{
         visibility: hidden;
