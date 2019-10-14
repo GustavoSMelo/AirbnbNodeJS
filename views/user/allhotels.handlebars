@@ -1,0 +1,17 @@
+<article class="row mt-5">
+    <h1 class="col-xl-12 col-lg-12 col-md-12 col-sm-12 m-3">Hotels</h1>
+    {{#each hotels}}
+        <a href="/user/hotel/page/{{_id}}" class="card-link">
+            <section class="card card-custom ">
+                <header class="card-header">
+                    <img class="img-fluid rounded thumbnail-equals" src="/uploads/{{image_hotel}}">
+                </header>
+                <section class="p-5">
+                    <h3>{{name_hotel}}</h3>
+                    Stars: {{stars_hotel}}<br/>
+                    Stadia: {{stadia_hotel}}USD$<br/>
+                </section>
+            </section>
+        </a>
+    {{/each}}
+</article>
