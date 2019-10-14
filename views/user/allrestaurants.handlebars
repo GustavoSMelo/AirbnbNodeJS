@@ -1,0 +1,15 @@
+<article class="row mt-5">
+    {{#each restaurant}}
+        <a href="/user/restaurant/page/{{_id}}" class="card-link">
+            <section class="card card-custom ">
+                <header class="card-header">
+                    <img class="img-fluid rounded" src="/uploads/{{name_image_restaurant}}">
+                </header>
+                <section class="p-5">
+                    <h3>{{name_restaurant}}</h3>
+                    Stars: {{rating_restaurant}}<br/>
+                </section>
+            </section>
+        </a>
+    {{/each}}
+</article>
