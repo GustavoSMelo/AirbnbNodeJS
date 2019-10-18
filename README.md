@@ -36,7 +36,7 @@
 - Multer
 - BodyParser
 - Mongoose
-- expess-handlebars
+- express-handlebars
 - bcrypt
 - express-session
 - passport
