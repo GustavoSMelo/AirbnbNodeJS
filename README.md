@@ -42,10 +42,10 @@
 - passport
 - connect-flash
 
-#### dependency management:
+#### Dependency management:
 - Yarnpkg
 
-#### versioning code:
+#### Versioning code:
 - Git 
 #### What API I used in this project ?
 - I used Mapbox
