@@ -28,6 +28,7 @@
 #### Back-end:
 - NodeJS
 - Express
+- Rest API
 
 #### Database:
 - MongoDB
